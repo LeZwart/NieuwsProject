@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Nieuwe Verkiezingen in Nederland",
+        "description": "De volgende landelijke verkiezingen zijn aangekondigd voor volgend jaar.",
+        "category_id": 1,
+        "author_id": 1
+    },
+    {
+        "title": "Doorbraak in Kunstmatige Intelligentie",
+        "description": "Wetenschappers hebben een nieuwe AI-algoritme ontwikkeld dat medische diagnoses kan verbeteren.",
+        "category_id": 2,
+        "author_id": 1
+    },
+    {
+        "title": "Nederland wint WK Voetbal",
+        "description": "Nederland heeft de wereldbeker gewonnen na een spannende finale.",
+        "category_id": 3,
+        "author_id": 1
+    },
+    {
+        "title": "Nieuwe Filmrelease trekt Grote Publiek",
+        "description": "De nieuwste blockbuster film heeft een recordaantal bezoekers getrokken in het openingsweekend.",
+        "category_id": 4,
+        "author_id": 1
+    },
+    {
+        "title": "Gezondheidstips voor de Winter",
+        "description": "Experts delen tips om gezond te blijven tijdens de koude wintermaanden.",
+        "category_id": 5,
+        "author_id": 1
+    }
+]

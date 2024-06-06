@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use app\Models\News;
+use App\Models\News;
 
 class NewsSeeder extends Seeder
 {
@@ -21,6 +21,7 @@ class NewsSeeder extends Seeder
                     'title' => $newsItem['title'],
                     'description' => $newsItem['description'],
                     'category_id' => $newsItem['category_id'],
+                    'author_id' => $newsItem['author_id'],
                 ]
             );
         }
