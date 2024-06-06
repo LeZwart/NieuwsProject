@@ -1,0 +1,17 @@
+[
+    {
+        "message": "Hello, World!",
+        "reviewer_id": 1,
+        "news_id": 2
+    },
+    {
+        "message": "Deze comment is niet echt!",
+        "reviewer_id": 1,
+        "news_id": 2
+    },
+    {
+        "message": "Goodbye, World!",
+        "reviewer_id": 2,
+        "news_id": 2
+    }
+]

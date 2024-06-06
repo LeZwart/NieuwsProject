@@ -23,4 +23,12 @@ class NewsController extends Controller
     {
         return view('news.create');
     }
+
+    // TODO: Implement deletion of news posts
+    public function delete($id)
+    {
+        News::destroy($id);
+
+        return redirect()->route('news.index');
+    }
 }

@@ -1,3 +1,3 @@
 <x-app-layout>
-    <p>:D</p>
+    <p>hallo</p>
 </x-app-layout>
