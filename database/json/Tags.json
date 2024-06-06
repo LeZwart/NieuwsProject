@@ -1,0 +1,34 @@
+[
+    {
+        "title": "Verkiezingen",
+        "description": "Nieuws en updates over verkiezingen en stemmingen."
+    },
+    {
+        "title": "Innovatie",
+        "description": "Informatie over nieuwe en baanbrekende technologieën."
+    },
+    {
+        "title": "Voetbal",
+        "description": "Laatste nieuws en updates over voetbal."
+    },
+    {
+        "title": "Films",
+        "description": "Nieuws en recensies over de nieuwste films."
+    },
+    {
+        "title": "Gezondheidstips",
+        "description": "Adviezen en tips voor een gezonde levensstijl."
+    },
+    {
+        "title": "Onderzoek",
+        "description": "Recente wetenschappelijke onderzoeken en bevindingen."
+    },
+    {
+        "title": "Muziek",
+        "description": "Nieuwe muziek releases en concerten."
+    },
+    {
+        "title": "Internationaal",
+        "description": "Belangrijke gebeurtenissen en nieuws van over de hele wereld."
+    }
+]

@@ -1,0 +1,34 @@
+[
+    {
+        "title": "Politiek",
+        "description": "Nieuws gerelateerd aan politieke gebeurtenissen en kwesties."
+    },
+    {
+        "title": "Technologie",
+        "description": "Updates en informatie over technologie en innovaties."
+    },
+    {
+        "title": "Sport",
+        "description": "Laatste nieuws en updates uit de wereld van sport."
+    },
+    {
+        "title": "Entertainment",
+        "description": "Nieuws en updates over de entertainmentindustrie."
+    },
+    {
+        "title": "Gezondheid",
+        "description": "Informatie en nieuws over gezondheid en welzijn."
+    },
+    {
+        "title": "Wetenschap",
+        "description": "Laatste ontdekkingen en nieuws op het gebied van wetenschap."
+    },
+    {
+        "title": "Zakelijk",
+        "description": "Nieuws gerelateerd aan zaken, economie en financiën."
+    },
+    {
+        "title": "Wereld",
+        "description": "Internationaal nieuws en gebeurtenissen van over de hele wereld."
+    }
+]

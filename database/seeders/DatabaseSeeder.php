@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,5 +20,26 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        $this->call([
+            CategoriesSeeder::class,
+            TagsSeeder::class,
+            NewsSeeder::class,
+        ]);
+
+        DB::table('tagsnews')->insert(
+            [
+                [
+                    'tag_id' => 1,
+                    'news_id' => 1,
+                ],
+
+                [
+                    'tag_id' => 2,
+                    'news_id' => 1,
+                ]
+            ]
+
+        );
     }
 }
