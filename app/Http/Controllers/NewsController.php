@@ -31,4 +31,18 @@ class NewsController extends Controller
 
         return redirect()->route('news.index');
     }
+
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'category' => 'required',
+
+        ]);
+
+
+
+        // return redirect()->route('news.index');
+    }
 }
