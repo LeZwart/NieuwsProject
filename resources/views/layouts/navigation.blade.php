@@ -15,6 +15,8 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">Dashboard</x-nav-link>
 
                     <x-nav-link :href="route('news.index')" :active="request()->routeIs('news.index')">Nieuws</x-nav-link>
+                    <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">Categorieën</x-nav-link>
+                    <x-nav-link :href="route('tag.index')" :active="request()->routeIs('tag.index')">Tags</x-nav-link>
                 </div>
             </div>
 
