@@ -13,4 +13,15 @@ class Comment extends Model
     {
         return $this->belongsTo(News::class);
     }
+
+    public function Reviewer()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    protected $fillable = [
+        'news_id',
+        'reviewer_id',
+        'message',
+    ];
 }

@@ -13,4 +13,9 @@ class Tag extends Model
     {
         return $this->belongsToMany(News::class, 'tagsnews');
     }
+
+    protected $fillable = [
+        'title',
+        'description'
+    ];
 }

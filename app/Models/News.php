@@ -28,4 +28,11 @@ class News extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected $fillable = [
+        'title',
+        'description',
+        'category_id',
+        'author_id',
+    ];
 }

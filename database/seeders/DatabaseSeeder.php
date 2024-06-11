@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             CategoriesSeeder::class,
             TagsSeeder::class,
             NewsSeeder::class,
+            CommentSeeder::class,
         ]);
 
         DB::table('tagsnews')->insert(

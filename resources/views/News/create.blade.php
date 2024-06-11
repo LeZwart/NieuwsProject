@@ -88,7 +88,7 @@ $tags = Tag::all();
 
                 suggestionList = document.querySelector('.suggestion-list');
                 suggestionList.innerHTML = '';
-                if (filteredTags.length) {
+                if (filteredTags.length && value.length > 0) {
                     filteredTags.forEach(tag => {
                         const suggestion = document.createElement('p');
                         suggestion.classList.add('suggestion', 'bg-gray-100', 'text-gray-700', 'rounded', 'px-2', 'py-1', 'mb-1');

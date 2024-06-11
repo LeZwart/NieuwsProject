@@ -25,26 +25,48 @@
                             <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{{ $tag->title }}</span>
                         @endforeach
                     </div>
-                    <p class="text-gray-800">{{ $newspost->description }}</p>
+                    <p class="text-gray-800 whitespace-pre-wrap">{{ $newspost->description }}</p>
                 </div>
 
                 {{-- Comment section --}}
                 <div class="mt-8">
                     <h2 class="text-xl font-semibold text-gray-900">Reacties</h2>
                     <div class="mt-4">
-                        @foreach ($newspost->comments as $comment)
-                            <div class="bg-gray-100 p-4 rounded-lg mt-4">
-                                <div class="flex justify-between">
-                                    <span class="text-gray-800">{{ $comment->author->name }}</span>
-                                    <span class="text-gray-600">{{ $comment->created_at }}</span>
-                                </div>
-                                <p class="mt-2 text-gray-800">{{ $comment->content }}</p>
+                        <form action="{{ route('comment.upload') }}" method="post">
+                            <input type="hidden" name="news_id" value="{{ $newspost->id }}">
+                            @csrf
+                            <div class="mb-4">
+                                <label for="comment" class="block text-gray-700 text-sm font-bold mb-2">Reactie</label>
+                                <textarea required name="comment" id="comment" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24"></textarea>
+                                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Verzend</button>
                             </div>
-                        @endforeach
+                        </form>
+                        <div>
+                            @foreach ($newspost->comments as $comment)
+                                <div class="bg-gray-100 p-4 rounded-lg mt-4">
+                                    <div class="flex justify-end">
+                                        <span class="text-gray-800">{{ $comment->comment }}</span>
+                                        @if ($comment->reviewer_id === Auth::id())
+                                            <form action="{{ route('comment.delete', $comment->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-red-500 hover:text-red-700">Verwijder</button>
+                                            </form>
+                                            <a href="{{ route('comment.edit', $comment->id) }}" class="text-blue-500 hover:text-blue-700 pl-4">Bewerk</a>
+                                        @endif
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="text-gray-600">{{ $comment->created_at }}</span>
+                                        <span>  \\  </span>
+                                        <span class="text-gray-600">{{ $comment->Reviewer->name }}</span>
+                                        <p class="whitespace-pre-wrap">{{ $comment->message }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
 
             </div>
         </div>
     </div>
 </x-app-layout>
-

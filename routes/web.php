@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\CommentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,5 +47,11 @@ Route::get('/tag/{id}', [TagController::class, 'show'])->name('tag.show');
 Route::get('/tag/{id}/edit', [TagController::class, 'edit'])->name('tag.edit');
 Route::patch('/tag/{id}', [TagController::class, 'update'])->name('tag.update');
 Route::delete('/tag/{id}/delete', [TagController::class, 'delete'])->name('tag.delete');
+
+// Comments
+Route::post('/comment', [CommentController::class, 'uploadComment'])->name('comment.upload');
+Route::delete('/comment/{id}/delete', [CommentController::class, 'delete'])->name('comment.delete');
+Route::get('/comment/{id}/edit', [CommentController::class, 'edit'])->name('comment.edit');
+Route::patch('/comment/{id}', [CommentController::class, 'update'])->name('comment.update');
 
 require __DIR__.'/auth.php';
