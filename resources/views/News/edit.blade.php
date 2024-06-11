@@ -49,13 +49,13 @@ $tags = Tag::all();
 
         {{-- Write description / content --}}
         <div class="mb-6">
-            <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+            <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Beschrijving</label>
             <textarea required name="description" id="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24">{{ $newspost->description }}</textarea>
         </div>
 
         {{-- Submit btn --}}
         <div class="flex items-center justify-between">
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Update News</button>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Update Nieuws</button>
         </div>
     </form>
 

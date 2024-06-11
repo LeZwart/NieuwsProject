@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <p class="text-xl text-center">Welkom terug, {{ Auth::user()->name }}</p>
+                    <p class="text-xl text-center">Hallo, {{ Auth::user()->name }}</p>
                     <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                     <div>
                         <div class="flex space-x-8 mt-4 bg-slate-200 p-3 w-min">

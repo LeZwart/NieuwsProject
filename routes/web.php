@@ -7,9 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CommentController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [NewsController::class, 'landing_page']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

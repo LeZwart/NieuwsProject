@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\News;
+use App\Models\Comment;
 use App\Models\Category;
 use App\Models\Tag;
 
@@ -12,13 +13,15 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $newsposts = News::all();
+        $newsposts = News::OrderBy('created_at', 'desc')->get();
 
         return view('news.index', compact('newsposts'));
     }
 
     public function show($id)
     {
+
+
         return view('news.show', ['newspost' => News::findOrFail($id)]);
     }
 
@@ -30,6 +33,16 @@ class NewsController extends Controller
     public function edit($id)
     {
         return view('news.edit', ['newspost' => News::findOrFail($id)]);
+    }
+
+    public function landing_page()
+    {
+        $newsposts = News::orderBy('created_at', 'desc')->take(2)->get();
+        $total_posts = News::count();
+        $total_comments = Comment::count();
+
+
+        return view('welcome', compact('newsposts', 'total_posts', 'total_comments'));
     }
 
     public function update(Request $request, $id)

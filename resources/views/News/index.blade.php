@@ -1,5 +1,7 @@
 <x-app-layout>
-
+    <div class="flex row">
+        <a href="{{ route('news.create') }}" class="px-4 py-2 m-2 bg-blue-500 text-white rounded hover:bg-blue-600">Plaats Nieuws</a>
+    </div>
     @foreach ($newsposts as $news)
         <a href="{{ route('news.show', $news->id) }}" class="block p-4 sm:p-8 bg-white shadow sm:rounded-lg hover:bg-gray-100">
             <div class="max-w-xl">
@@ -15,7 +17,19 @@
                         <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{{ $tag->title }}</span>
                     @endforeach
                 </div>
-                <p class="text-gray-800">{{ $news->description }}</p>
+                <?php
+                $description = $news->description;
+
+                // If the description is longer than 100 characters, shorten it
+                $shortened = $description;
+                $isShortened = false; // Niet in gebruik
+                if (strlen($description) > 100) {
+                    $shortened = substr($description, 0, 100) . '...';
+                    $isShortened = true;
+                }
+
+                ?>
+                <p class="text-gray-800">{{ $shortened }}</p>
             </div>
         </a>
     @endforeach
