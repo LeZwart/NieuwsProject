@@ -34,8 +34,16 @@ $tags = Tag::all();
             <label for="tags" class="block text-gray-700 text-sm font-bold mb-2">Tags</label>
             <input type="text" id="tag-input" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
 
-            <div class="suggestion-list mt-2"></div>
-            <div class="tag-list mt-2"></div>
+            <div class="tag-list mt-2">
+                {{-- Tags go here --}}
+
+            </div>
+            <br>
+            <div class="suggestion-list mt-2">
+                {{-- Suggestions go here --}}
+
+            </div>
+
         </div>
 
         {{-- Write description / content --}}
@@ -59,46 +67,66 @@ $tags = Tag::all();
             const tag = tags.find(tag => tag.title.toLowerCase() === value.toLowerCase());
 
             if (tag) {
-                this.value = '';
-
-                const tagId = tag.id;
-                const tagList = document.querySelector('.tag-list');
-                const tagInputName = 'tags[]';
-
-                // Check if the tag is already added
-                if (!Array.from(tagList.querySelectorAll('input')).some(input => input.value == tagId)) {
-
-                    const tagElement = document.createElement('div');
-                    tagElement.classList.add('tag', 'inline-block', 'bg-blue-100', 'text-blue-700', 'rounded-full', 'px-4', 'py-1', 'mr-2', 'mb-2', 'flex', 'items-center');
-
-                    tagElement.innerHTML = `
-                        <input type="hidden" name="${tagInputName}" value="${tagId}">
-                        <span class="mr-2">${tag.title}</span>
-                        <button type="button" class="remove-tag text-red-500 hover:text-red-700 font-bold">X</button>
-                    `;
-
-                    tagList.appendChild(tagElement);
-                    suggestionList = document.querySelector('.suggestion-list');
-                    suggestionList.innerHTML = '';
-                }
+                highlightTag(tag);
             } else {
-                // Display tags which contain the input value
-                const filteredTags = tags.filter(tag => tag.title.toLowerCase().includes(value.toLowerCase()));
-                console.log(filteredTags);
-
-                suggestionList = document.querySelector('.suggestion-list');
-                suggestionList.innerHTML = '';
-                if (filteredTags.length && value.length > 0) {
-                    filteredTags.forEach(tag => {
-                        const suggestion = document.createElement('p');
-                        suggestion.classList.add('suggestion', 'bg-gray-100', 'text-gray-700', 'rounded', 'px-2', 'py-1', 'mb-1');
-                        suggestion.textContent = tag.title;
-                        suggestionList.appendChild(suggestion);
-                    });
-                }
-
+                displaySuggestions(value);
             }
         });
+
+        function highlightTag(tag) {
+            const suggestion = document.getElementById('suggestion-' + tag.id);
+
+            if (suggestion) {
+                suggestion.classList.add('bg-green-200', 'text-green-700');
+            } else {
+                addTag(tag);
+            }
+        }
+
+        function addTag(tag) {
+            const tagId = tag.id;
+            const tagList = document.querySelector('.tag-list');
+            const tagInputName = 'tags[]';
+
+            // Check if the tag is already added
+            if (!Array.from(tagList.querySelectorAll('input')).some(input => input.value == tagId)) {
+
+                const tagElement = document.createElement('div');
+                tagElement.classList.add('tag', 'inline-block', 'bg-blue-100', 'text-blue-700', 'rounded-full', 'px-4', 'py-1', 'mr-2', 'mb-2', 'flex', 'items-center');
+
+                tagElement.innerHTML = `
+                    <input type="hidden" name="${tagInputName}" value="${tagId}">
+                    <span class="mr-2">${tag.title}</span>
+                    <button type="button" class="remove-tag text-red-500 hover:text-red-700 font-bold">X</button>
+                `;
+
+                tagList.appendChild(tagElement);
+                suggestionList = document.querySelector('.suggestion-list');
+                suggestionList.innerHTML = '';
+            }
+        }
+
+        function displaySuggestions(value) {
+            const filteredTags = tags.filter(tag => tag.title.toLowerCase().includes(value.toLowerCase()));
+            const suggestionList = document.querySelector('.suggestion-list');
+            suggestionList.innerHTML = '';
+
+            if (filteredTags.length && value.length > 0) {
+                filteredTags.forEach(tag => {
+                    const suggestion = document.createElement('p');
+                    suggestion.id = 'suggestion-' + tag.id;
+                    suggestion.classList.add('suggestion', 'bg-blue-100', 'text-blue-700', 'cursor-pointer', 'hover:text-blue-600', 'hover:bg-blue-200', 'rounded', 'px-2', 'py-1', 'mb-1');
+                    suggestion.textContent = tag.title;
+
+                    suggestion.addEventListener('click', function() {
+                        addTag(tag);
+                        tagInput.value = '';
+                    });
+
+                    suggestionList.appendChild(suggestion);
+                });
+            }
+        }
 
         // Add listener to remove tags
         document.addEventListener('click', function(e) {
@@ -107,4 +135,5 @@ $tags = Tag::all();
             }
         });
     </script>
+
 </x-app-layout>
