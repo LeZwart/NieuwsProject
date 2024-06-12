@@ -14,9 +14,9 @@ class News extends Model
         return $this->belongsToMany(Tag::class, 'tagsnews');
     }
 
-    Public function comments()
+    public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class)->latest();
     }
 
     public function category()
