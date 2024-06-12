@@ -38,10 +38,8 @@ $search = request('search');
 
                 // If the description is longer than 100 characters, shorten it
                 $shortened = $description;
-                $isShortened = false; // Niet in gebruik
                 if (strlen($description) > 100) {
                     $shortened = substr($description, 0, 100) . '...';
-                    $isShortened = true;
                 }
 
                 ?>
