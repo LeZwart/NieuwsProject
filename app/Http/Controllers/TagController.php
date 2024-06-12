@@ -16,7 +16,10 @@ class TagController extends Controller
 
     public function show($id)
     {
-        return view('tag.show', ['tag' => Tag::findOrFail($id)]);
+        $tag = Tag::findOrFail($id);
+        $error = session('error');
+
+        return view('tag.show', compact('tag', 'error'));
     }
 
     public function edit($id)
@@ -59,7 +62,12 @@ class TagController extends Controller
     public function delete($id)
     {
         $tag = Tag::findOrFail($id);
-        $tag->delete();
+
+        try {
+            $tag->delete();
+        } catch (\Exception $e) {
+            return redirect()->route('tag.show', ['id' => $tag->id])->with('error', 'Kan tag niet verwijderen, tag is mogelijk nog in gebruik.');
+        }
 
         return redirect()->route('tag.index');
     }

@@ -23,7 +23,7 @@ $search = request('search');
             <div class="max-w-xl">
                 <h1 class="text-2xl font-semibold text-gray-900">{{ $news->title }}</h1>
                 <div>
-                    <span class="text-gray-600">{{ $news->created_at }}</span>
+                    <span class="text-gray-600">{{ $news->created_at->DiffForHumans() }}</span>
                     <span>//</span>
                     <span class="text-gray-600">{{ $news->author->name }}</span>
                 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Exception;
 
 class CategoryController extends Controller
 {
@@ -15,9 +16,11 @@ class CategoryController extends Controller
     }
 
     public function show($id) {
+        $category = Category::findOrFail($id);
+        $error = session('error');
 
+        return view('category.show', compact('category', 'error'));
 
-        return view('category.show', ['category' => Category::findOrFail($id)]);
     }
 
     public function create()
@@ -63,7 +66,13 @@ class CategoryController extends Controller
     public function delete($id)
     {
         $category = Category::findOrFail($id);
-        $category->delete();
+
+        try {
+            $category->delete();
+        } catch (Exception $e) {
+            // dd($e->getMessage());
+            return redirect()->route('category.show', ['id' => $category->id])->with('error', 'Categorie kan niet verwijderd worden. Mogelijk zijn er nog nieuwsberichten aan gekoppeld.');
+        }
 
         return redirect()->route('category.index');
     }

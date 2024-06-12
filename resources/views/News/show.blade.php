@@ -5,7 +5,7 @@
                 <div class="max-w-xl">
                     <h1 class="text-2xl font-semibold text-gray-900">{{ $newspost->title }}</h1>
                     <div>
-                        <span class="text-gray-600">{{ $newspost->created_at }}</span>
+                        <span class="text-gray-600">{{ $newspost->created_at->DiffForHumans() }}</span>
                         <span>  \\  </span>
                         <span class="text-gray-600" > {{ $newspost->author->name }} </span>
                     </div>
@@ -38,7 +38,7 @@
                             <div class="mb-4">
                                 <label for="comment" class="block text-gray-700 text-sm font-bold mb-2">Reactie</label>
                                 <textarea required name="comment" id="comment" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24"></textarea>
-                                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Verzend</button>
+                                <button type="submit" class="bg-blue-500 mt-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Verzend</button>
                             </div>
                         </form>
                         <div>
@@ -56,11 +56,11 @@
                                         @endif
                                     </div>
                                     <div class="mt-2">
-                                        <span class="text-gray-600">{{ $comment->created_at }}</span>
+                                        <span class="text-gray-600">{{ $comment->created_at->DiffForHumans() }}</span>
                                         <?php
                                         if ($comment->created_at != $comment->updated_at) {
                                             echo "<span>  \\\  </span>";
-                                            echo "<span class='text-gray-600'>Gewijzigd op: " . $comment->updated_at . "</span>";
+                                            echo "<span class='text-gray-600'>Gewijzigd: " . $comment->updated_at->DiffForHumans() . "</span>";
                                         }
                                         ?>
 
@@ -73,7 +73,6 @@
                             @endforeach
                         </div>
                     </div>
-
             </div>
         </div>
     </div>

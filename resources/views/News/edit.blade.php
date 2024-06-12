@@ -33,7 +33,7 @@ $tags = Tag::all();
         {{-- Select tags (multiple) --}}
         <div class="mb-4">
             <label for="tags" class="block text-gray-700 text-sm font-bold mb-2">Tags</label>
-            <input type="text" id="tag-input" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ implode(', ', $newspost->tags->pluck('title')->toArray()) }}">
+            <input type="text" id="tag-input" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
 
             <div class="suggestion-list mt-2"></div>
             <div class="tag-list mt-2">

@@ -77,8 +77,22 @@ class NewsController extends Controller
 
     public function delete($id)
     {
-        News::destroy($id);
+        $newspost = News::findOrFail($id);
+        $comments = Comment::where('news_id', $newspost->id)->get();
+        $tagrels = DB::table('tagsnews')->where('news_id', $newspost->id)->get();
 
+        // Delete comments
+        foreach ($comments as $comment) {
+            $comment->delete();
+        }
+
+        // Delete many to many relationship
+        foreach ($tagrels as $tag) {
+            DB::table('tagsnews')->where('news_id', $newspost->id)->delete();
+        }
+
+        // Finally, delete post
+        $newspost->delete();
         return redirect()->route('news.index');
     }
 
