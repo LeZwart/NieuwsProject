@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tag;
+use Illuminate\Support\Facades\DB;
 
 class TagController extends Controller
 {
@@ -18,8 +19,9 @@ class TagController extends Controller
     {
         $tag = Tag::findOrFail($id);
         $error = session('error');
+        $totalNews = DB::table('tagsnews')->where('tag_id', $id)->count();
 
-        return view('tag.show', compact('tag', 'error'));
+        return view('tag.show', compact('tag', 'error', 'totalNews'));
     }
 
     public function edit($id)

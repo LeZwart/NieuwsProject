@@ -10,6 +10,15 @@
                 @endif
                 <div class="max-w-xl">
                     <h1 class="text-2xl font-semibold text-gray-900">{{ $tag->title }}</h1>
+                    <?php
+
+                    // klein checkje voor een klein grammatisch probleempje
+                    $artikel = "artikel";
+                    if ($totalNews !== 1) {
+                        $artikel = "artikelen";
+                    }
+                    ?>
+                    <p>Gebruikt in {{ $totalNews }} nieuws {{ $artikel }}</p>
                     <div>
                         <span class="text-gray-600">{{ $tag->created_at }}</span>
                         <div class="mt-4">

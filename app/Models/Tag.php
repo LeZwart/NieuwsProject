@@ -14,6 +14,12 @@ class Tag extends Model
         return $this->belongsToMany(News::class, 'tagsnews');
     }
 
+    public function totalNews()
+    {
+        $tags = Tag::withCount('news')->get();
+        return $tags;
+    }
+
     protected $fillable = [
         'title',
         'description'
