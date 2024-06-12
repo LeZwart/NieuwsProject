@@ -57,6 +57,14 @@
                                     </div>
                                     <div class="mt-2">
                                         <span class="text-gray-600">{{ $comment->created_at }}</span>
+                                        <?php
+                                        if ($comment->created_at != $comment->updated_at) {
+                                            echo "<span>  \\\  </span>";
+                                            echo "<span class='text-gray-600'>Gewijzigd op: " . $comment->updated_at . "</span>";
+                                        }
+                                        ?>
+
+
                                         <span>  \\  </span>
                                         <span class="text-gray-600">{{ $comment->Reviewer->name }}</span>
                                         <p class="whitespace-pre-wrap">{{ $comment->message }}</p>

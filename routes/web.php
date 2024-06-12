@@ -6,12 +6,15 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\StatController;
 
 Route::get('/', [NewsController::class, 'landing_page']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/stats', [StatController::class, 'index'])->name('stats');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
