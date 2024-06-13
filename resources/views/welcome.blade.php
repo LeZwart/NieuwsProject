@@ -36,7 +36,7 @@
 
                                 @if (Route::has('register'))
                                     <a href="{{ route('register') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] bg-orange-400 p-5">
-                                        Register
+                                        Registreer
                                     </a>
                                 @endif
                             @endauth
@@ -56,24 +56,34 @@
                     <div class="bg-white shadow sm:rounded-lg p-6 mt-6">
                         <h2 class="text-2xl font-semibold text-gray-900 mb-4">Laatste nieuws</h2>
                         @foreach ($newsposts as $news)
-                            <div class="block p-4 sm:p-8 bg-gray-50 shadow sm:rounded-lg mb-4 shadow-md">
-                                <div class="max-w-xl">
-                                    <h3 class="text-xl font-semibold text-gray-900">{{ $news->title }}</h3>
-                                    <div class="text-gray-600 text-sm">
-                                        <span>{{ $news->created_at->format('M d, Y') }}</span>
-                                        <span> // </span>
-                                        <span>{{ $news->author->name }}</span>
-                                    </div>
-                                    <div class="mt-2">
-                                        <span class="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-cyan-700 mr-2">{{ $news->category->title }}</span>
-                                        @foreach ($news->tags as $tag)
-                                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{{ $tag->title }}</span>
-                                        @endforeach
-                                    </div>
-                                    {{-- <p class="text-gray-800 mt-2">{{ $news->description }}</p> --}}
+                        <a href="{{ route('news.show', $news->id) }}" class="block p-4 sm:p-8 bg-white shadow sm:rounded-lg hover:bg-gray-100">
+                            <div class="max-w-xl">
+                                <h1 class="text-2xl font-semibold text-gray-900">{{ $news->title }}</h1>
+                                <div>
+                                    <span class="text-gray-600">{{ $news->created_at->DiffForHumans() }}</span>
+                                    <span>//</span>
+                                    <span class="text-gray-600">{{ $news->author->name }}</span>
                                 </div>
+                                <div>
+                                    <span class="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-cyan-700 mr-2">{{ $news->category->title }}</span>
+                                    @foreach ($news->tags as $tag)
+                                        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{{ $tag->title }}</span>
+                                    @endforeach
+                                </div>
+                                <?php
+                                $description = $news->description;
+
+                                // If the description is longer than 100 characters, shorten it
+                                $shortened = $description;
+                                if (strlen($description) > 100) {
+                                    $shortened = substr($description, 0, 100) . '...';
+                                }
+
+                                ?>
+                                <p class="text-gray-800">{{ $shortened }}</p>
                             </div>
-                        @endforeach
+                        </a>
+                    @endforeach
                     </div>
                 </main>
             </div>

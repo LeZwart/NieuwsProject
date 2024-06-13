@@ -6,8 +6,13 @@
                     <h1 class="text-2xl font-semibold text-gray-900">{{ $newspost->title }}</h1>
                     <div>
                         <span class="text-gray-600">{{ $newspost->created_at->DiffForHumans() }}</span>
-                        <span> \\ </span>
-                        <span class="text-gray-600"> {{ $newspost->author->name }} </span>
+                        <?php
+                        if ($newspost->created_at != $newspost->updated_at) {
+                            echo '<span>  \\\  </span>';
+                            echo "<span class='text-gray-600'>Gewijzigd: " . $newspost->updated_at->DiffForHumans() . '</span>';
+                        }
+                        ?>
+                        <h2 class="text-gray-600"> {{ $newspost->author->name }} </h2>
                     </div>
                     @if ($newspost->author->id === Auth::id())
                         <div class="mt-4">
