@@ -6,14 +6,14 @@ $search = request('search');
 
 <x-app-layout>
     <div class="flex row justify-between">
-        <div>
+        {{-- <div>
             <form action="{{ route('news.index') }}" method="GET">
                 <div class="flex row">
                     <input type="text" name="search" class="px-4 py-2 m-2 bg-white border border-gray-300 rounded shadow focus:outline-none focus:ring focus:border-blue-300" placeholder="Zoekterm">
                     <button type="submit" class="px-4 py-2 m-2 bg-blue-500 text-white rounded hover:bg-blue-600">Zoeken</button>
                 </div>
             </form>
-        </div>
+        </div> --}}
         <div class="flex row">
             <a href="{{ route('news.create') }}" class="px-4 py-2 m-2 bg-blue-500 text-white rounded hover:bg-blue-600">Plaats Nieuws</a>
         </div>
